@@ -1,8 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class SearchBar extends Component {
   //comment
   state = { text: "", email: "", date: "" };
+  static propTypes = {
+    searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired,
+    showClear: PropTypes.bool.isRequired,
+    setAlert:PropTypes.func.isRequired,
+  };
   //comment
 
   //comment
@@ -15,12 +22,18 @@ class SearchBar extends Component {
   //comment
   onSubmit = (event) => {
     event.preventDefault();
+
+    if (this.state.text === "") {
+      this.props.setAlert("Please enter something", "light");
+    } else {
+      this.props.searchUsers(this.state.text);
+      return this.setState({ text: "" });
+    }
     // console.log(this.state.text);
-    this.props.searchUsers(this.state.text);
-    return this.setState({ text: "" });
-  };
+  };;
 
   render() {
+    const { clearUsers, showClear } = this.props;
     return (
       <div>
         <form className="form" onSubmit={this.onSubmit}>
@@ -38,6 +51,12 @@ class SearchBar extends Component {
             className="btn btn-dark btn-block"
           />
         </form>
+        {showClear && (
+          <button className="btn btn-light btn-block" onClick={clearUsers}>
+            Clear
+          </button>
+        )}
+        {console.log(showClear)}
       </div>
     );
   }
