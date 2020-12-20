@@ -56,7 +56,7 @@ class SearchBar extends Component {
             Clear
           </button>
         )}
-        {console.log(showClear)}
+        {/*console.log(showClear)*/}
       </div>
     );
   }
