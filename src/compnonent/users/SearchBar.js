@@ -1,48 +1,42 @@
-import React, { Component } from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 
-class SearchBar extends Component {
+const  SearchBar=({searchUsers,showClear,setAlert,clearUsers})=> {
   //comment
-  state = { text: "", email: "", date: "" };
-  static propTypes = {
-    searchUsers: PropTypes.func.isRequired,
-    clearUsers: PropTypes.func.isRequired,
-    showClear: PropTypes.bool.isRequired,
-    setAlert:PropTypes.func.isRequired,
-  };
+  const [text,setText] = useState({ text: "", email: "", date: "" });
+  
   //comment
 
   //comment
-  handleChange = (event) => {
+ const handleChange = (event) => {
     // console.log(event.target.value, "value target");
     // console.log(event.target.name, "name target"); // console.log(event.target.value, "value target");
     // console.log(event.target.name, "name target");
-    return this.setState({ [event.target.name]: event.target.value });
-  };
+    return setText({ [event.target.name]: event.target.value });
+  }
   //comment
-  onSubmit = (event) => {
+ const onSubmit = (event) => {
     event.preventDefault();
 
-    if (this.state.text === "") {
-      this.props.setAlert("Please enter something", "light");
+    if (text.text === "") {
+      setAlert("Please enter something", "light");
     } else {
-      this.props.searchUsers(this.state.text);
-      return this.setState({ text: "" });
+      searchUsers(text.text);
+      return setText({ text: "" });
     }
     // console.log(this.state.text);
   };;
 
-  render() {
-    const { clearUsers, showClear } = this.props;
+  
     return (
       <div>
-        <form className="form" onSubmit={this.onSubmit}>
+        <form className="form" onSubmit={onSubmit}>
           <input
             type="text"
             name="text"
             placeholder="Search Users"
-            onChange={this.handleChange}
-            value={this.state.text}
+            onChange={handleChange}
+            value={text.text}
           />
 
           <input
@@ -59,7 +53,12 @@ class SearchBar extends Component {
         {/*console.log(showClear)*/}
       </div>
     );
-  }
+  
 }
-
+SearchBar.propTypes = {
+    searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired,
+    showClear: PropTypes.bool.isRequired,
+    setAlert:PropTypes.func.isRequired,
+  };
 export default SearchBar;

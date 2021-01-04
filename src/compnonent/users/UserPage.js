@@ -1,18 +1,22 @@
-import React, { Component, Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Spinner from "../layout/Spinner";
+import Repos from "../Repos/Repos";
 
-class UserPage extends Component {
-  componentDidMount() {
-    this.props.getUser(this.props.match.params.login);
+const UserPage=({user,match,getUser,getUserRepos,repos,loading})=>{
+  useEffect(()=>{
+    getUser(match.params.login);
+    getUserRepos(match.params.login);
+    //eslint-disable-next-line
   }
-  render() {
+,[]) 
     const {
       avatar_url,
       name,
       location,
       bio,
-      blog,
+      blog, 
       login,
       html_url,
       followers,
@@ -21,8 +25,8 @@ class UserPage extends Component {
       public_gists,
       hireable,
       company,
-    } = this.props.user;
-    const { loading } = this.props.loading;
+    } =user;
+    
     if (loading) return <Spinner />;
     return (
       <Fragment>
@@ -96,9 +100,17 @@ class UserPage extends Component {
           <div className="badge badge-danger">Public Repos:{public_repos}</div>
           <div className="badge badge-dark">Public Gists:{public_gists}</div>
         </div>
+        <Repos repos={repos} />
       </Fragment>
     );
-  }
+  
 }
+  UserPage.propTypes = {
+    loading: PropTypes.bool,
+    user: PropTypes.object.isRequired,
+    getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
+  };
+
 
 export default UserPage;
