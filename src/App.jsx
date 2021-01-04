@@ -9,6 +9,7 @@ import UserPage from "./compnonent/users/UserPage";
 import SearchBar from './compnonent/users/SearchBar';
 import Alert from "./compnonent/layout/Alert"
 import About from "./compnonent/pages/About";
+import GithubState from "./context/github/GithubState";
   //comment//comment github api authorization
 
 const github = axios.create({
@@ -112,50 +113,52 @@ const  getUserRepos = async (username) => {
   };
 
     return (
-      <Router>S
-        <div className="App">
-          <Navbar />
-          <div className="container">
-            <Alert alert={alert} />
-            <Switch>
-              <Route
-                path="/"
-                exact
-                render={(props) => {
-                  return (
-                    <Fragment>
-                      <SearchBar
-                        searchUsers={searchUsers}
-                        clearUsers={clearUsers}
-                        showClear={users.length > 0 ? true : false}
-                        setAlert={showAlert}
+      <GithubState>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <div className="container">
+              <Alert alert={alert} />
+              <Switch>
+                <Route
+                  path="/"
+                  exact
+                  render={(props) => {
+                    return (
+                      <Fragment>
+                        <SearchBar
+                          searchUsers={searchUsers}
+                          clearUsers={clearUsers}
+                          showClear={users.length > 0 ? true : false}
+                          setAlert={showAlert}
+                        />
+                        <Users users={users} loading={loading} />
+                      </Fragment>
+                    );
+                  }}
+                />
+                <Route path="/about" exact component={About} />
+                <Route
+                  exact
+                  path="/user/:login"
+                  render={(props) => {
+                    return (
+                      <UserPage
+                        {...props}
+                        getUser={getUser}
+                        user={user}
+                        loading={loading}
+                        getUserRepos={getUserRepos}
+                        repos={repos}
                       />
-                      <Users users={users} loading={loading} />
-                    </Fragment>
-                  );
-                }}
-              />
-              <Route path="/about" exact component={About} />
-              <Route
-                exact
-                path="/user/:login"
-                render={(props) => {
-                  return (
-                    <UserPage
-                      {...props}
-                      getUser={getUser}
-                      user={user}
-                      loading={loading}
-                      getUserRepos={getUserRepos}
-                      repos={repos}
-                    />
-                  );
-                }}
-              />
-            </Switch>
+                    );
+                  }}
+                />
+              </Switch>
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+      </GithubState>
     );
   
 }
