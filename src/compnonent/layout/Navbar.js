@@ -7,7 +7,7 @@ const Navbar = ({ icon, title }) => {
   //comment we can also specify the type of props by using
 
   return (
-    <nav className="navbar bg-primary">
+    <nav className="navbar bg-primary" style={{ fontSize: "0.7em" }}>
       <h1>
         <i className={icon}></i> {title}
       </h1>

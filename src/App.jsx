@@ -32,19 +32,7 @@ const [alert,setAlert] =useState(null)
   //** state**//
 
   //comment//comment//comment
-  //Github search users
- const searchUsers = async (text) => {
-    setLoading(true );
-
-    try {
-      const res = await github.get(`/search/users?q=${text}`);
-      // console.log(res.data);
-       setUsers(res.data.items);
-       setLoading( false );
-    } catch (err) {
-      console.log(err, "errror type");
-    }
-  };
+  
 
   //GET SINGLE Github  user
  const getUser = async (username) => {
@@ -127,7 +115,7 @@ const  getUserRepos = async (username) => {
                     return (
                       <Fragment>
                         <SearchBar
-                          searchUsers={searchUsers}
+                          searchUsers
                           clearUsers={clearUsers}
                           showClear={users.length > 0 ? true : false}
                           setAlert={showAlert}
@@ -162,6 +150,7 @@ const  getUserRepos = async (username) => {
     );
   
 }
+App.contextType=GithubState
 
 export default App;
   

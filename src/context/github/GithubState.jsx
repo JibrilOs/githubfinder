@@ -11,6 +11,15 @@ import {
   REMOVE_ALERT,
 } from "../types";
 
+ //comment//comment github api authorization
+
+const github = axios.create({
+  baseURL: "https://api.github.com",
+  headers: { Authorization: process.env.REACT_APP_GITHUB_TOKEN },
+});
+  //comment//comment github api authorization
+
+
 const GithubState = (props) => {
   const initialState = {
     users: [],
@@ -19,12 +28,28 @@ const GithubState = (props) => {
     loading: false,
     alert: null,
   };
-  const [state, dispatch] = useReducer(initialState, GithubReducer);
+  const [state, dispatch] = useReducer(GithubReducer, initialState);
+  //Search Users
+  //Github search users
+  const searchUsers = async (text) => {
+    setLoading();
+
+    try {
+      const res = await github.get(`/search/users?q=${text}`);
+      // console.log(res.data);
+
+      dispatch({ type: SEARCH_USERS, payload: res.data.items });
+    } catch (err) {
+      console.log(err, "errror type");
+    }
+  };
   //Search Users
   //Get user
   //Get repos
   //Clear users
   //set loading
+  const setLoading = () => dispatch({ type: SET_LOADING });
+
   return (
     <githubContext.Provider
       value={{
@@ -33,6 +58,7 @@ const GithubState = (props) => {
         repos: state.repos,
         loading: state.loading,
         alert: state.null,
+        searchUsers,
       }}
     >
       {props.children}
