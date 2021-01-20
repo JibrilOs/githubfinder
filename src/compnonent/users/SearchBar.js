@@ -1,10 +1,13 @@
-import React, {  useState, useContext } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useContext } from "react";
 import githubContext from "../../context/github/githubContext.jsx";
-const SearchBar = ({ showClear, setAlert, clearUsers }) => {
+import AlertContext from "../../context/alert/AlertContext";
+const SearchBar = () => {
   //comment
   const githubcontext = useContext(githubContext);
-     
+  const alertContext = useContext(AlertContext);
+  const  { users, clearUsers  }  =  githubcontext;;
+  const { setAlert } = alertContext;
+
   const [text, setText] = useState({ text: "", email: "", date: "" });
 
   //comment
@@ -28,7 +31,7 @@ const SearchBar = ({ showClear, setAlert, clearUsers }) => {
     }
     // console.log(this.state.text);
   };
-
+const showClear = users.length > 0; 
   return (
     <div>
       <form className="form" onSubmit={onSubmit}>
@@ -51,14 +54,7 @@ const SearchBar = ({ showClear, setAlert, clearUsers }) => {
           Clear
         </button>
       )}
-      {console.log(githubcontext)}
     </div>
   );
 };
-SearchBar.propTypes = {
-   
-    clearUsers: PropTypes.func.isRequired,
-    showClear: PropTypes.bool.isRequired,
-    setAlert:PropTypes.func.isRequired,
-  };
 export default SearchBar;

@@ -1,1 +1,1 @@
-###  You can search for people on github using this app
+###  You can search for github users using this app and also get access to the repos .
