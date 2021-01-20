@@ -12,8 +12,8 @@ An application used to  search for github users  and also get access to their cu
 This project is currently in development. Users can filter github users by their username and see github data representation. .
 
 ## Project Screen Shot(s)
-![Alt text](https://github.com/JibrilOs/githubfinder/blob/main/public/screen1.jpg?raw=true "Title")
-![Alt text](https://github.com/JibrilOs/githubfinder/blob/main/public/screen2.jpg?raw=true "Title")
+![Alt text](https://github.com/JibrilOs/githubfinder/blob/main/public/screen1.jpg?raw=true "screenshot1")
+![Alt text](https://github.com/JibrilOs/githubfinder/blob/main/public/screen2.jpg?raw=true "screenshot2")
 
 ## Installation and Setup Instructions
 
