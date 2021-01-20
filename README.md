@@ -2,7 +2,7 @@
 ## GITHUBFINDER APP
 
 
-TweetWorld 
+GITHUBFINDER APP
 
 An application used to  search for github users  and also get access to their current  repos .
  built with React, ContextApi, JavaScript, and CSS.
@@ -12,8 +12,8 @@ An application used to  search for github users  and also get access to their cu
 This project is currently in development. Users can filter github users by their username and see github data representation. .
 
 ## Project Screen Shot(s)
-![Alt text](public\screen1.jpg?raw=true "Title")
-![Alt text](public\screen2.jpg?raw=true "Title")
+![Alt text](https://github.com/JibrilOs/githubfinder/blob/main/public/screen1.jpg?raw=true "Title")
+![Alt text](https://github.com/JibrilOs/githubfinder/blob/main/public/screen2.jpg?raw=true "Title")
 
 ## Installation and Setup Instructions
 
