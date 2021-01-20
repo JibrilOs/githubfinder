@@ -35,7 +35,7 @@ To Start Server:
 
 To Visit App:
 
-`localhost:3000/ideas`  
+`localhost:3000/`  
 
  framework etc. Brag about your choices and justify them here.  
 
