@@ -10,6 +10,18 @@ import {
   SET_LOADING,
 } from "../types";
 
+//**creating Env file for netlify config */
+let githubToken;
+
+if(process.env.NODE_ENV !=="production"){
+githubToken = process.env.REACT_APP_GITHUB_TOKEN;
+
+}
+else{
+  githubToken = process.env.REACT_APP_GITHUB_TOKEN;
+
+}
+
  //comment//comment github api authorization
 
 const github = axios.create({
