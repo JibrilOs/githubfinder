@@ -7,9 +7,7 @@ import {
   GET_USER,
   GET_REPOS,
   CLEAR_USERS,
-  SET_ALERT,
   SET_LOADING,
-  REMOVE_ALERT,
 } from "../types";
 
  //comment//comment github api authorization

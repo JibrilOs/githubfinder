@@ -3,9 +3,7 @@ import {
   GET_USER,
   GET_REPOS,
   CLEAR_USERS,
-  SET_ALERT,
   SET_LOADING,
-  REMOVE_ALERT,
 } from "../types";
 const GithubReducer = (state, action) => {
   switch (action.type) {

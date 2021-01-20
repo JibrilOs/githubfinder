@@ -1,11 +1,10 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./compnonent/layout/Navbar";
-import Users from "./compnonent/users/Users";
 import UserPage from "./compnonent/users/UserPage";
 
-import SearchBar from './compnonent/users/SearchBar';
+import Home from "./compnonent/pages/Home";
 import Alert from "./compnonent/layout/Alert"
 import About from "./compnonent/pages/About";
 import GithubState from "./context/github/GithubState";
@@ -34,18 +33,7 @@ const App=()=> {
             <div className="container">
               <Alert alert={alert} />
               <Switch>
-                <Route
-                  path="/"
-                  exact
-                  render={(props) => {
-                    return (
-                      <Fragment>
-                        <SearchBar />
-                        <Users />
-                      </Fragment>
-                    );
-                  }}
-                />
+                <Route path="/" exact component={Home} />
                 <Route path="/about" exact component={About} />
                 <Route exact path="/user/:login" component={UserPage} />
               </Switch>

@@ -1,7 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
+import SearchBar from "../users/SearchBar";
+import Users from "../users/Users";
 
 function Home(props) {
-  return <div></div>;
+  return (
+    <Fragment>
+      <SearchBar />
+      <Users />
+    </Fragment>
+  );
 }
 
 export default Home;
